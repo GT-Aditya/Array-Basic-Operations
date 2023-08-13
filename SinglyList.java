@@ -11,8 +11,8 @@ public class SinglyList{
     }
 
     // Represent the head and tail of the singly linked list
-    public Node head = null;
-    public Node tail = null;
+    public static Node head = null;
+    public static Node tail = null;
     //Represent the number of elements in singly linked list
     private int size = 0;
 
@@ -92,12 +92,77 @@ public class SinglyList{
 
         sList.addNodeAt(5, 3);
 
-        sList.removeFrom(3);
-        sList.removeFrom(4);
-
         // Displays the nodes present in the list
-        sList.display();
+        //sList.display();
+        minNode();
+        maxNode();
+        //reverse(sList.head);
     }
+
+    public static void reverse(Node current) {
+        //Checks if list is empty
+        if(current == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        else {
+            //Checks if the next node is null, if yes then prints it.
+            if(current.next == null) {
+                System.out.print(current.data + " ");
+                return;
+            }
+            //Recursively calls the reverse function
+            reverse(current.next);
+            System.out.print(current.data + " ");
+        }
+    }
+
+
+     public static void minNode() {
+        Node current = head;
+        int min;
+
+        if(head == null) {
+            System.out.println("List is empty");
+        }
+        else {
+            //Initializing min with head node data
+            min = head.data;
+
+            while(current != null){
+                 //If current node's data is smaller than min
+                 //Then, replace value of min with current node's data
+                 if(min > current.data) {
+                     min = current.data;
+                 }
+                 current= current.next;
+            }
+            System.out.println("Minimum value node in the list: "+ min);
+        }
+    }
+public static void maxNode() {
+        Node current = head;
+        int max;
+
+        if(head == null) {
+            System.out.println("List is empty");
+        }
+        else {
+            //Initializing max with head node data
+            max = head.data;
+
+            while(current != null){
+                 //If current node's data is greater than max
+                 //Then, replace value of max with current node's data
+                 if(max < current.data) {
+                     max = current.data;
+                 }
+                 current = current.next;
+            }
+            System.out.println("Maximum value node in the list: "+ max);
+        }
+    }
+
 
     public void removeFrom(int pos) {
         Node ptr = head;
